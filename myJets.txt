@@ -1,0 +1,2 @@
+passanger,Cessna 172,20,100,120000
+cargo,Carrier,30,150,150000
