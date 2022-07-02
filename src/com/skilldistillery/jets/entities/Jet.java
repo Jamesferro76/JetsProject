@@ -58,7 +58,11 @@ public abstract class Jet {
 				+ ", price=" + price + "]";
 	}
 	
-	
+	public double fly() {
+		double flightTime= this.speedMPH/this.range;
+		return flightTime;
+		
+	}
 	
 
 }

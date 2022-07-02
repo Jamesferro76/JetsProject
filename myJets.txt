@@ -1,2 +1,3 @@
-passanger,Cessna 172,20,100,120000
-cargo,Carrier,30,150,150000
+Passanger,Cessna 172,20,100,120000
+Cargo,Carrier,30,150,150000
+Fighter,Pewdinator,50,200,200000
