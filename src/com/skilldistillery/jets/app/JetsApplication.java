@@ -23,10 +23,12 @@ public class JetsApplication {
 			JetsApplication ja= new JetsApplication();
 			ja.run(sc);
 			
+			
+			
 		}
 
 		private void run(Scanner sc) {
-			constructingPlanes();
+			af.constructingPlanes();
 			menuChoice(sc);
 			
 		}
@@ -39,7 +41,6 @@ public class JetsApplication {
 			sc.nextLine();
 			
 			try {
-				System.out.println("You made it to the try!");
 				switch(userChoice) {
 				
 				case 1:
@@ -59,6 +60,7 @@ public class JetsApplication {
 				case 7:
 					break;
 				case 8:
+					remove(sc);
 					break;
 				case 9:
 					trigger=false;
@@ -88,7 +90,6 @@ public class JetsApplication {
 		private void fleet(){
 			//How do I get the jets in here
 			List<Jet> jets= af.getFleet();
-			System.out.println("You made it to the method fleet!");
 			for (Jet jet : jets) {
 				System.out.println(jet);
 			}
@@ -124,41 +125,38 @@ public class JetsApplication {
 //
 //		}
 		
-		private void constructingPlanes() {
-			try ( BufferedReader bufIn = new BufferedReader(new FileReader("myJets.txt")) ) {
-				  String line;
-				  while ((line = bufIn.readLine()) != null) {
-					  String[] lineArray= new String[5];
-					  lineArray=line.split(",");
-					  	parseJets(lineArray);	
-				    
-				  }
+		public void remove(Scanner sc) {
+			List<Jet> jets= af.getFleet();
+			boolean trigger;
+			int counter=0;
+			do{
+				trigger=false;
+				System.out.println("0. Cancel");
+			for (Jet jet : jets) {
+				counter++;
+				System.out.println(counter + ". "+ jet.getModel());
+			}
+			try {
+				int userChoice= sc.nextInt();
+				
+				if(userChoice==0) {
+				System.out.println("Cancel removal protocol");
+				break;
+				
+				}else if(userChoice<jets.size()) {
+				jets.remove((userChoice-1));
+				System.out.println("Jet removed.");
+				}else {
+					System.out.println("That was not a readable response. Please try again.");
 				}
-				catch (IOException e) {
-				  System.err.println(e);
-				}
+			} catch (Exception e) {
+				System.out.println("That was not a readable response. Please use a number shown.");
+				trigger=true;
+			}
+			
+			}while(trigger);
 		}
 		
-		public void parseJets(String[] lineArray) {
-			System.out.println("Made it to parseJets");
-			
-			//lineArray[0] is the category fighter/cargo/passanger
-			String model=lineArray[1];
-			int speedMPH= Integer.parseInt(lineArray[2]);
-			long range= Long.parseLong(lineArray[3]);
-			double price= Double.parseDouble(lineArray[4]);
+		
 
-			if(lineArray[0].equals("Cargo")) {
-			//How do I get this to correctly add a jet into the jet class and into the arraylist
-			 CargoPlane cp= new CargoPlane(model, speedMPH, range, price);
-			 System.out.println(cp);
-			} else if(lineArray[0].equals("Fighter")) {
-				FighterPlane fp= new FighterPlane(model, speedMPH, range, price);
-				System.out.println(fp);
-		}else if(lineArray[0].equals("Passanger")) {
-			PassangerPlane pp= new PassangerPlane(model, speedMPH, range, price);
-			System.out.println(pp);
-		}
-
-}
 }
