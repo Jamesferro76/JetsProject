@@ -59,7 +59,7 @@ public abstract class Jet {
 	}
 	
 	public double fly() {
-		double flightTime= this.speedMPH/this.range;
+		double flightTime= this.range/this.speedMPH;
 		return flightTime;
 		
 	}

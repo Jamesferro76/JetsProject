@@ -60,8 +60,8 @@ public class AirField extends Jet {
 		} else if (lineArray[0].equals("Fighter")) {
 			FighterPlane fp = new FighterPlane(model, speedMPH, range, price);
 			fleet.add(fp);
-		} else if (lineArray[0].equals("Passanger")) {
-			PassangerPlane pp = new PassangerPlane(model, speedMPH, range, price);
+		} else if (lineArray[0].equals("Passenger")) {
+			PassengerPlane pp = new PassengerPlane(model, speedMPH, range, price);
 			fleet.add(pp);
 		}
 
