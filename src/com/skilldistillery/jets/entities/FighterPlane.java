@@ -7,12 +7,12 @@ public class FighterPlane extends Jet implements CombatReady {
 
 	public FighterPlane(String model, int speedMPH, long range, double price) {
 		super(model, speedMPH, range, price);
-		System.out.println(combatReady);
 		
 	}
 
-	private void fight() {
-		System.out.println("Missiles ready");
+	public void fight() {
+		System.out.println(combatReady);
+//		System.out.println("Missiles ready");
 		
 	}
 
