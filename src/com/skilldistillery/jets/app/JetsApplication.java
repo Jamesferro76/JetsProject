@@ -188,21 +188,79 @@ public class JetsApplication {
 //		work on the functionality of this section so if the user mistypes they can continue.
 	public void addJet(Scanner sc) {
 		List<Jet> jets = af.getFleet();
+		boolean trigger = false;
+		String userChoice = "none";
+		String userModel = "none";
+		int userSpeedMPH = 0;
+		long userRange = 0;
+		double userPrice = 0;
 
-		System.out.println("Is this a Passenger, Fighter, or Cargo plane?");
-		String userChoice = sc.nextLine();
+		do {
+			System.out.println("Is this a Passenger, Fighter, or Cargo plane?");
+			userChoice = sc.nextLine();
+			if (userChoice.equals("Passenger") || userChoice.equals("passenger") || userChoice.equals("1")
+					|| userChoice.equals("P") || userChoice.equals("p")) {
+				trigger = false;
+			} else if (userChoice.equals("Cargo") || userChoice.equals("cargo") || userChoice.equals("2")
+					|| userChoice.equals("C") || userChoice.equals("c")) {
+				trigger = false;
+			} else if (userChoice.equals("Fighter") || userChoice.equals("fighter") || userChoice.equals("3")
+					|| userChoice.equals("F") || userChoice.equals("f")) {
+				trigger = false;
+			} else {
+				System.out.println("That was not a readable choice. Please try again.");
+				trigger = true;
+			}
 
-		System.out.println("What is the model of this plane?");
-		String userModel = sc.nextLine();
+		} while (trigger);
 
-		System.out.println("What is this plane's speed in MPH?");
-		int userSpeedMPH = sc.nextInt();
+		
+		System.out.println("What is this plane's model?");
+		userModel= sc.nextLine();
+		
+		do {
+			System.out.println("What is this plane's speed in MPH?");
+			try {
+				userSpeedMPH = sc.nextInt();
+				trigger = false;
+				sc.nextLine();
 
-		System.out.println("What is this plane's range?");
-		long userRange = sc.nextLong();
+			} catch (Exception e) {
+				sc.nextLine();
+				System.out.println("That was not a readable response. Please use a number.");
+				trigger = true;
+			}
+		} while (trigger);
+		
+		
+		do {
+			System.out.println("What is this plane's range?");
+			try {
+				userRange = sc.nextLong();
+				trigger = false;
+				sc.nextLine();
+				
+			} catch (Exception e) {
+				sc.nextLine();
+				System.out.println("That was not a readable response. Please use a number.");
+				trigger = true;
+			}
+		} while (trigger);
 
-		System.out.println("What is this planes price?");
-		double userPrice = sc.nextDouble();
+		do {
+			System.out.println("What is this planes price?");
+			try {
+				userPrice = sc.nextDouble();
+				trigger = false;
+				sc.nextLine();
+				
+			} catch (Exception e) {
+				sc.nextLine();
+				System.out.println("That was not a readable response. Please use a number.");
+				trigger = true;
+			}
+		} while (trigger);
+
 
 		switch (userChoice) {
 
@@ -232,6 +290,7 @@ public class JetsApplication {
 			CargoPlane cp = new CargoPlane(userModel, userSpeedMPH, userRange, userPrice);
 			af.addJet(cp);
 			System.out.println("Added: " + cp);
+			break;
 
 		default:
 			System.out.println("I couldn't read what type you wanted.");
