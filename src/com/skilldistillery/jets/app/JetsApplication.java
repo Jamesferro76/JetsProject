@@ -22,6 +22,8 @@ public class JetsApplication {
 
 		JetsApplication ja = new JetsApplication();
 		ja.run(sc);
+		
+		sc.close();
 
 	}
 
