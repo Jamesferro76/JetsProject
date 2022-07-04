@@ -305,6 +305,7 @@ public class JetsApplication {
 		boolean trigger;
 		int counter = 0;
 		do {
+			counter=0;
 			trigger = false;
 			System.out.println("0. Cancel");
 			for (Jet jet : jets) {
@@ -313,6 +314,7 @@ public class JetsApplication {
 			}
 			try {
 				int userChoice = sc.nextInt();
+				sc.nextLine();
 
 				if (userChoice == 0) {
 					System.out.println("Cancel removal protocol");
@@ -321,10 +323,13 @@ public class JetsApplication {
 				} else if (userChoice <= jets.size()) {
 					jets.remove((userChoice - 1));
 					System.out.println("Jet removed.");
-				} else {
-					System.out.println("That was not a readable response. Please try again.");
+				}else {
+					System.out.println("That was not a readable response. Please use a number shown.");
+					trigger =true;
 				}
-			} catch (Exception e) {
+				}
+			 catch (Exception e) {
+				sc.nextLine();
 				System.out.println("That was not a readable response. Please use a number shown.");
 				trigger = true;
 			}
